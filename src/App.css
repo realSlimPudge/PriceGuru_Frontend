@@ -1,38 +1,325 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat';
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.background{
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  width: 100%;
+  background: radial-gradient(circle, rgba(175,255,153,1) 3%, rgba(141,254,119,1) 29%, rgba(91,223,64,1) 91%);
+  position: relative;
+  overflow: hidden;
+}
+.logo{
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  font-size: 64px;
+  color: white;
+  padding: 30px;
+  border-radius: 20px;
+  transition: all 300ms ease;
+}
+.logo--text{
+  opacity: 0;
+  transition: 600ms ease opacity;
+  line-height:100%;
+  cursor: default;
+  font-weight: 800;
+  text-transform: uppercase; 
+}
+.logo--text::selection{
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+}
+.logo br::selection{
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.logo span::selection{
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.logo span{
+  transition: 500ms ease all;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.floating-element {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  animation: float 10s infinite ease-in-out;
+  box-shadow: 1px 1px 30px 10px rgba(255, 255, 255, 0.3);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes float {
+  0% {
+    transform: translate(0,0) rotate(0deg);
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    transform: translate(-20px,-20px) rotate(180deg);
+  }
+  100% {
+    transform: translate(0,0) rotate(360deg);
+  }
+}
+.about__transition{
+  width: 600px;
+  height: 463px;
+  position: absolute;
+  top: 50%;
+  left: 70%;
+  transition: 400ms all ease;
+}
+.ourAdventages{
+  height: fit-content;
+}
+.aboutinfo--container{
+  width: 700px;
+  height: fit-content;
+  transition: 400ms all linear;
+  height: 480px;
+  overflow: hidden;
+  position: relative;
+}
+.scrollbar{
+  position: absolute;
+  top: 52%;
+  left: 90%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  transform: translate(-50%,-50%);
+}
+.scrollbar--point{
+  width: 12px;
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.7s);
+  border-radius: 50%;
+  transition: 300ms ease all;
+}
+.about--us,.ourAdventage{
+  height: 480px;
+}
+.aboutUs--overflow {
+  display: flex;
+  flex-direction: column;
+  height: 300vh;
+  transition: transform 0.5s ease-in-out;
+
+}
+.aboutUs--title{
+  font-size: 62px;
+  font-weight: 500;
+  color: white;
+  margin-left: 12px;
+}
+.aboutUs--desc{
+  width: 600px;
+  height: 400px;
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  background-color: rgba(71, 184, 76, 0.5);
+  border-radius: 20px;
+  padding: 20px 15px;
+  font-size: 28px;
+  color: white;
+}
+.aboutUs--desc span{
+  font-weight: 600;
+}
+.aboutUs--desc br{
+  margin-bottom: 10px;
+}
+.start--Btn{
+  width: 600px;
+  height: 480px;
+  display: flex;
+}
+.start--Btn button{
+  width: 80%;
+  height: 30%;
+  margin: auto;
+  font-size: 72px;
+  border: none;
+  outline: none;
+  color: rgb(73, 255, 88);
+  border-radius: 20px;
+  font-weight: 700;
+  background:rgba(255, 255, 255,0.8);
+  background-size: 200%;
+  transition: all 300ms ease;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+.start--Btn button:hover{
+  background-color: rgba(245, 245, 245, 0.8);
+  box-shadow: 0px 10px 10px 1px rgba(17, 116, 8, 0.2);
+}
+.cards{
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  grid-template-rows: repeat(2,1fr);
+  width: fit-content;
+  margin: 0 auto;
+  gap: 20px;
+
+}
+.product-card{
+  width: 270px;
+  height: 420px;
+  border-radius: 30px;
+  padding: 20px;
+  overflow: hidden;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.product-card a{
+  text-decoration: none;
+  color: black;
+}
+.card--img__container{
+  width: 100%;
+  height: 267px;
+  margin-bottom: 10px;
+}
+.card--img__container img{
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: fill;
+}
+.prices{
+  display: flex;
+  align-items: baseline;
+}
+.prices del{
+  color: rgb(253, 106, 106);
+}
+
+.current{
+  font-weight: 500;
+  font-size: 20px;
+  height: fit-content;
+  margin-right: 10px;
+}
+.worst{
+  display: flex;
+}
+.card--desk{
+  font-size: 14px;
+  height: 37px;
+  overflow: hidden;
+}
+.add--btn{
+  width: 100%;
+  margin-top: 10px;
+  
+}
+.add--btn button{
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  outline: none;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px 0px;
+  cursor: pointer;
+  background: transparent;
+}
+.catalog--input{
+  width: fit-content;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+.catalog--input input{
+  width: 300px;
+  height: 50px;
+  border: none;
+  outline: none;
+  border-radius: 15px 0px 0px 15px;
+  padding: 0px 15px;
+  font-size: 16px;
+  border: 2px solid white;
+  border-right: none;
+}
+.catalog--input button{
+  width: 100px;
+  height: 50px;
+  border: none;
+  border-radius: 0px 15px 15px 0px;
+  outline: none;
+  cursor: pointer;
+  background-color: rgb(67, 241, 67);
+  font-size: 18px;
+  color: white;
+  font-weight: 500;
+  transition: 300ms all ease;
+}
+.catalog--input button:hover{
+  background-color: rgb(62, 221, 62);
+}
+.select{
+  margin-left: 20px;
+    width: 250px;
+    text-align: center;
+  height: 50px;
+  outline: none;
+  border: none;
+   font-size: 18px;
+     font-weight: 500;
+     background-color: white;
+     border-radius: 15px;
+}
+.skeleton {
+  background: #f0f0f0;
+  border-radius: 4px;
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+/* Стили для разных типов скелетонов */
+.skeleton.title {
+  width: 50%;
+  height: 20px;
+  margin-bottom: 15px;
+}
+.skeleton.text {
+  width: 100%;
+  height: 12px;
+}
+.skeleton.image {
+    border-radius: 15px;
+  width: 100%;
+  height: 200px;
+}
+.skeleton.thumbnail {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.skeleton{
+  position: relative;
+  overflow: hidden;
+}
+.skeleton::before{
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(-50%,-50%) rotate(45deg);
+  box-shadow: 0px 0px 10px 10px rgba(255, 255, 255, 0.5);
+  height: 130%;
+  width: 0px;
+  background-color: white;
+  animation: loading 3s infinite ease;
+}
+
+@keyframes loading {
+  0% {
+    left: -50%;
+  }
+  100%{
+    left: 150%;
   }
 }
