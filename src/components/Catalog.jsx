@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import axios from 'axios';
 import Card from './Card';
 import Skeleton from './Skeleton';
+import Analyzer from './Analyzer';
 
 const Catalog = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -9,31 +10,42 @@ const Catalog = () => {
   const [cardCount, setCardCount] = useState(10); 
   const [loading, setLoading] = useState(false);
   const [floatingElements, setFloatingElements] = useState([]);
+  const [analyzer,setAnalyzer] = useState(false)
+  const [analyzerData,setAnalyzerData] = useState([])
+
+  const handleAnalyzer = ()=>{
+    setAnalyzer(!analyzer)
+  }
+
+  async function analyzerFetch() {
+    try{
+      const response = await axios.post(
+      `http://localhost:8080/api/parser/search?query=${searchQuery}`,
+      {
+        title: 'foo',
+        body: 'bar',
+        userId: 1
+      },
+      {
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+          'Authorization': 'Basic ' + btoa('admin:admin') 
+        }
+      }
+    );
+    setAnalyzerData(response.data);
+    console.log(response.data);
+  }catch(error){
+    console.error(error)
+  }
+  }
 
   const handleSearch = async () => {
   setLoading(true);
   try {
-  //  const response = await axios.post(
-  //     `http://localhost:8080/api/parser/search?query=${searchQuery}`,
-  //     {
-  //       title: 'foo',
-  //       body: 'bar',
-  //       userId: 1
-  //     },
-  //     {
-  //       headers: {
-  //         'Content-type': 'application/json; charset=UTF-8',
-  //         'Authorization': 'Basic ' + btoa('admin:admin') 
-  //       }
-  //     }
-  //   );
-  //   setProducts(response.data);
-  //   console.log(response.data);
-
     const response = await axios.get(`http://localhost:3001/api/search`, {
         params: {
           q: searchQuery,
-          count: cardCount // Количество карточек, которые вы хотите получить
         }
       });
       setProducts(response.data);
@@ -103,17 +115,28 @@ const Catalog = () => {
           onChange={(e) => setSearchQuery(e.target.value)}
           onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
         />
-        <button onClick={handleSearch}>Поиск</button>
-          <select className='select'>
+        <button onClick={()=>{
+          handleSearch()
+          analyzerFetch()
+          }} className='search--btn'>Поиск</button>
+        <select className='select'>
           <option value="default">По умолчанию</option>
           <option value="price_asc">По возрастанию цены</option>
           <option value="price_desc">По убыванию цены</option>
           <option value="name_asc">По алфавиту (А-Я)</option>
           <option value="name_desc">По алфавиту (Я-А)</option>
         </select>
+        
+        <button className='analyzer--button' onClick={()=>{
+          handleAnalyzer()
+          analyzerFetch()
+        }}>{analyzer ? 
+          'Перейти в парсер' :
+            'Перейти в анализер'
+        }</button>
       </div>
       
-      <div className='cards'>
+      {analyzer ? <Analyzer data={analyzerData}></Analyzer> : <div className='cards'>
         {loading ? (
           Array.from({ length: cardCount }).map((_, index) => (
             <div key={index} className="product-card">
@@ -128,7 +151,8 @@ const Catalog = () => {
             <Card key={index} product={product} />
           ))
         )}
-      </div>
+      </div>}
+      
     </div>
   );
 };
