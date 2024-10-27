@@ -24,7 +24,7 @@ const Analyzer = ({data}) => {
           <div>{el.additionalInformation
 .seller}</div>
           <div>{el.mainInfo.feedbacks}</div>
-<div>{el.marketplace}</div>
+<div><a href={el.url} target="_blank">{el.marketplace}</a></div>
         </div>
       ))}
     </div>

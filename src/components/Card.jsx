@@ -4,7 +4,7 @@ export default function Card({ product }) {
  
   return (
     <div className="product-card">
-      <a href={product.href}>
+      <a href={product.href} target="_blank">
         <div className="card--img__container">
           <img src={product.image} alt={product.name} draggable={false}/>
         </div>
