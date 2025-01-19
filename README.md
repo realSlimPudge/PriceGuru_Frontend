@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# Демонстрация
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+https://github.com/user-attachments/assets/f9d054ea-4a8b-4a04-926c-f16304d46222
+
+[Backend](https://github.com/SidereaH/WebPA-Back)
+
+[Связанные события](https://github.com/SidereaH/Portfolio/tree/main/Autumn%20Hackathon%20(DSTU)%2026-27.10.2024)
 
 ## Available Scripts
 
